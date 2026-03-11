@@ -69,4 +69,4 @@ La tabla resultados quedaría así:
 | `balance` | Balances |
 
 ---
-Como mejora adicional, se podría implementar un Scheduled Trigger en MongoDB Atlas que ejecute esta consulta automáticamente cada 15 días y guarde el resumen en una colección de auditoría."
+Como mejora adicional, se podría implementar un Scheduled Trigger en MongoDB Atlas que ejecute esta consulta automáticamente cada 15 días y guarde el resumen en una colección de auditoría.
