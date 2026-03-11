@@ -16,7 +16,7 @@ Utilizando las tablas descritas, escriba una secuencia de funciones “filter”
 # Para entender un poco:
 
 Realizaremos un pequeño E-R para comprender como funciona nuestras tablas
-
+```mermaid
 erDiagram
     USUARIOS {
         int id_usuario PK
@@ -46,7 +46,7 @@ erDiagram
     USUARIOS ||--o{ PORTAFOLIOS : "tiene"
     ASESORES ||--o{ USUARIOS : "gestiona"
     PORTAFOLIOS ||--o{ BALANCES : "registra"
-
+```
 # Solución
 
 1. join(Portafolios, Usuarios, id_usuario, Usuarios_portafolios) - Inicialmmente haríamos un join con los datos que comparten las tablas de Portafolios y Usuarios, donde utilizaremos a id_usuario como clave de relación, procedemos a crear la tabla Usuarios_Portafolios donde quedará registrado esta sentencia.
