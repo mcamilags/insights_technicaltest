@@ -69,4 +69,32 @@ La tabla resultados quedaría así:
 | `balance` | Balances |
 
 ---
+
+## Equivalencia en SQL
+
+La secuencia de operaciones presentada anteriormente mediante las funciones `join` y `filter` puede representarse también como una consulta SQL tradicional. En este caso, los `join` permiten relacionar las tablas **Usuarios**, **Portafolios**, **Asesores** y **Balances**, mientras que las cláusulas `WHERE` aplican los filtros necesarios para obtener únicamente los balances de los portafolios que pertenecen a usuarios gestionados por el asesor indicado, considerando además el tipo de portafolio y el rango de fechas solicitado.
+
+Una posible representación en SQL sería la siguiente:
+
+```sql
+SELECT
+    p.id_portafolio,
+    p.tipo_portafolio,
+    p.id_usuario,
+    u.id_asesor,
+    b.fecha,
+    b.balance
+FROM Portafolios p
+JOIN Usuarios u 
+    ON p.id_usuario = u.id_usuario
+JOIN Asesores a 
+    ON u.id_asesor = a.id_asesor
+JOIN Balances b 
+    ON p.id_portafolio = b.id_portafolio
+WHERE a.email = "insightswm@gmail.com"
+AND p.tipo_portafolio = "tipo_portafolio"
+AND b.fecha BETWEEN 'FECHA_INICIO' AND 'FECHA_FIN';
+
+
+--- 
 Como mejora adicional, se podría implementar un Scheduled Trigger en MongoDB Atlas que ejecute esta consulta automáticamente cada 15 días y guarde el resumen en una colección de auditoría.
